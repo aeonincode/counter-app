@@ -21,6 +21,14 @@ class App extends Component {
     this.setState({ counters });
   };
 
+  handleDecrement = (counter) => {
+    const counters = [...this.state.counters];
+    const index = counters.indexOf(counter);
+    counters[index] = { ...counter };
+    counters[index].value--;
+    this.setState({ counters });
+  };
+
   handleReset = () => {
     const counters = this.state.counters.map((c) => {
       c.value = 0;
@@ -46,6 +54,7 @@ class App extends Component {
             counters={this.state.counters}
             onReset={this.handleReset}
             onIncrement={this.handleIncrement}
+            onDecrement={this.handleDecrement}
             onDelete={this.handleDelete}
           />
         </main>
@@ -54,25 +63,50 @@ class App extends Component {
   }
 }
 
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
+export default App;
+
+// import React, { Component } from 'react';
+// import NavBar from './components/navbar';
+// import Counters from './components/counters';
+// import './App.css';
+
+// class App extends Component {
+//   state = {};
+
+//   constructor(props) {
+//     super(props);
+//     console.log('App - Constructor');
+//   }
+
+//   componentDidMount() {
+//     console.log('App - Mounted');
+//   }
+
+//   handleIncrement = (counter) => {};
+
+//   handleReset = () => {};
+
+//   handleDelete = () => {};
+
+//   render() {
+//     console.log('App - Rendered');
+
+//     return (
+//       <React.Fragment>
+//         <NavBar
+//           totalCounters={this.state.counters.filter((c) => c.value > 0).length}
+//         />
+//         <main className='container'>
+//           <Counters
+//             counters={this.state.counters}
+//             onReset={this.handleReset}
+//             onIncrement={this.handleIncrement}
+//             onDelete={this.handleDelete}
+//           />
+//         </main>
+//       </React.Fragment>
+//     );
+//   }
 // }
 
-export default App;
+// export default App;
